@@ -12,7 +12,18 @@ class LojaController {
         res.render('lojas', { lojas, nomeLoja });
     }
 
+    static async paginaAdicionarLoja(req, res) {
+        res.render('add_loja');
+    }
+
+    static async addLoja(req, res) {
+        const { cnpj, nome, endereco, telefone } = req.body
+        const loja = Loja({ cnpj, nome, endereco, telefone })
+        await loja.save();
+
+        res.redirect('/lojas')
+    }
     
-
-
 }
+
+module.exports = LojaController;
