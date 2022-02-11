@@ -5,7 +5,7 @@ const Loja = model(
     new Schema({
         cnpj: { type: String, required: true },
         nome: { type: String, required: true },
-        endereço: { type: String, required: true},
+        endereco: { type: String, required: true},
         telefone: { type: String, required: true},
     })
 )

@@ -4,6 +4,9 @@ const router = Router()
 
 router.get('/lojas', LojaController.paginaLojas);
 router.get('/lojas/novo', LojaController.paginaAdicionarLoja);
-router.get('/lojas/enviar', LojaController.addLoja)
+router.post('/lojas/enviar', LojaController.addLoja);
+router.get('/lojas/editar/:id', LojaController.paginaEditLoja);
+router.post('/lojas/atualizar', LojaController.editLoja);
+router.post('/lojas/deletar', LojaController.deleteLoja);
 
 module.exports = router;

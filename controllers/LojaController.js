@@ -23,6 +23,28 @@ class LojaController {
 
         res.redirect('/lojas')
     }
+
+    static async paginaEditLoja(req, res) {
+        const { id } = req.params;
+        const loja = await Loja.findById(id).lean()
+
+        res.render('editar_loja', { loja })
+    }
+
+    static async editLoja(req, res) {
+        const { id, cnpj, nome, endereco, telefone } = req.body
+
+        await Loja.findByIdAndUpdate(id, { cnpj, nome, endereco, telefone })
+
+        res.redirect('/lojas')
+    }
+
+    static async deleteLoja(req, res) {
+        const { id } = req.body
+        await Loja.findByIdAndDelete(id)
+
+        res.redirect('/lojas')
+    }
     
 }
 

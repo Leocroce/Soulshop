@@ -1,0 +1,45 @@
+<div class="m-1">
+  <h2>Editar loja</h2>
+  <hr />
+  <form action="/lojas/atualizar" method="POST">
+    <input type="hidden" name="id" value="{{loja._id}}"/>
+    <div class="form-group">
+      <label for="name">CNPJ*</label>
+      <input type="text" name="cnpj" id="cnpj" class="form-control" value="{{loja.cnpj}}" required />
+    </div>
+    <div class="form-group">
+      <label for="nome">Nome*</label>
+      <input
+        type="text"
+        name="nome"
+        id="nome"
+        class="form-control"
+        value="{{loja.nome}}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="endereco">Endereço*</label>
+      <input
+        type="text"
+        name="endereco"
+        id="endereco"
+        class="form-control"
+        value="{{loja.endereco}}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="telefone">Telefone*</label>
+      <input
+        type="text"
+        name="telefone"
+        id="telefone"
+        class="form-control"
+        value="{{loja.telefone}}"
+        required
+      />
+    </div>
+    <button class="btn btn-dark mt-2">Editar</button>
+  </form>
+</div>
