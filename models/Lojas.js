@@ -1,5 +1,8 @@
+//Modulo mongoose
 const { model, Schema } = require('mongoose')
 
+//Criação do modelo de Loja (coleção no mongo)
+//Adição dos campos com os tipos
 const Loja = model(
     "Loja",
     new Schema({
