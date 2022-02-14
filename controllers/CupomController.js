@@ -1,54 +1,54 @@
 //Importando o modelo 
-const Loja = require('../models/Lojas')
+const Cupom = require('../models/Cupons')
 
 //Criação do controle de banco de dados
-class LojaController {
-    //Metodo de busca e renderização da pagina da Loja
-    static async paginaLojas(req, res) {
+class CupomController {
+    //Metodo de busca e renderização da pagina de Cupom
+    static async paginaCupons(req, res) {
         let query = {}
-        const { nomeLoja } = req.query
-        if(nomeLoja) {
-            query = {nome: { $regex: `${nomeLoja}`, $options: 'i' }}
+        const { nomeCupom } = req.query
+        if(nomeCupom) {
+            query = {nome: { $regex: `${nomeCupom}`, $options: 'i' }}
         }
 
-        const lojas = await Loja.find(query).lean()
-        res.render('lojas', { lojas, nomeLoja });
+        const cupons = await Cupom.find(query).lean()
+        res.render('cupons', { cupons, nomeCupom });
     }
-    //Metodo de renderização da pagina de add loja
-    static async paginaAdicionarLoja(req, res) {
-        res.render('add_loja');
+    //Metodo de renderização da pagina de add cupom
+    static async paginaAdicionarCupom(req, res) {
+        res.render('add_cupom');
     }
-    //Metodo de adicionar loja (post) 
-    static async addLoja(req, res) {
-        const { cnpj, nome, endereco, telefone } = req.body
-        const loja = Loja({ cnpj, nome, endereco, telefone })
-        await loja.save();
+    //Metodo de adicionar cupom (post) 
+    static async addCupom(req, res) {
+        const { titulo, nomeProduto, nomeLoja, desconto } = req.body
+        const cupom = Cupom({ titulo, nomeProduto, nomeLoja, desconto })
+        await cupom.save();
 
-        res.redirect('/lojas')
+        res.redirect('/cupons')
     }
-    //Metodo de renderizar pagina de editar loja pelo id (get)
-    static async paginaEditLoja(req, res) {
+    //Metodo de renderizar pagina de editar cupom pelo id (get)
+    static async paginaEditCupom(req, res) {
         const { id } = req.params;
-        const loja = await Loja.findById(id).lean()
+        const cupom = await Cupom.findById(id).lean()
 
-        res.render('editar_loja', { loja })
+        res.render('editar_cupom', { cupom })
     }
-    //Metodo de editar loja (post)
-    static async editLoja(req, res) {
-        const { id, cnpj, nome, endereco, telefone } = req.body
+    //Metodo de editar cupom (post)
+    static async editCupom(req, res) {
+        const { id, titulo, nomeProduto, nomeLoja, desconto } = req.body
 
-        await Loja.findByIdAndUpdate(id, { cnpj, nome, endereco, telefone })
+        await Cupom.findByIdAndUpdate(id, { titulo, nomeProduto, nomeLoja, desconto })
 
-        res.redirect('/lojas')
+        res.redirect('/cupons')
     }
-    //Metodo de deletar loja (post)
-    static async deleteLoja(req, res) {
+    //Metodo de deletar cupom (post)
+    static async deleteCupom(req, res) {
         const { id } = req.body
-        await Loja.findByIdAndDelete(id)
+        await Cupom.findByIdAndDelete(id)
 
-        res.redirect('/lojas')
+        res.redirect('/cupons')
     }
     
 }
 
-module.exports = LojaController;
+module.exports = CupomController;

@@ -1,0 +1,58 @@
+<section class="m-1">
+    <a href="/cupons/novo" class="btn btn-dark"> 
+        <i class="bi bi-plus"></i>
+        Criar cupom
+    </a>
+    <hr/>
+    <form method="GET">
+        <input 
+        type="text" 
+        name="nomeCupom"
+        placeholder="Nome do Cupom"
+        class="form-control form-control-sm"
+        value="{{nomeCupom}}"
+        >
+        <button class="btn btn-sm btn-dark mt-1">
+            <i class="bi bi-search"></i>
+            Buscar
+        </button>
+    </form>
+    <div class="container">
+        <div class="row">
+            {{#each cupons}}
+            <div class="col col-lg-4">
+                <div class="card my-2">
+                    <div class="card-header">
+                        <h4>
+                            {{this.titulo}} + {{this.desconto}}% de desconto
+                        </h4>
+                    </div>
+                    <div class="card-body my-1">
+                        <h5 class="card-title">
+                            {{this.nomeProduto}}    
+                        </h5>
+                        <h6 class="card-subtile">
+                            {{this.nomeLoja}}    
+                        </h6>
+                        <div class="d-flex">
+                            <div>
+                                <a href="/cupons/editar/{{this._id}}" class="btn btn-sm btn-warning mx-1">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <form action="/cupons/deletar/" method="POST">
+                                    <input type="hidden" name="id" value="{{this._id}}">
+                                    <button class="btn btn-sm btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

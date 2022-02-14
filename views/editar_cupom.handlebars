@@ -1,0 +1,45 @@
+<div class="m-1">
+  <h2>Editar cupom</h2>
+  <hr />
+  <form action="/cupons/atualizar" method="POST">
+    <input type="hidden" name="id" value="{{cupom._id}}"/>
+    <div class="form-group">
+      <label for="name">Titulo*</label>
+      <input type="text" name="titulo" id="titulo" class="form-control" value="{{cupom.titulo}}" required />
+    </div>
+    <div class="form-group">
+      <label for="nome">Nome do Produto*</label>
+      <input
+        type="text"
+        name="nomeProduto"
+        id="nomeProduto"
+        class="form-control"
+        value="{{cupom.nomeProduto}}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="endereco">Nome da Loja*</label>
+      <input
+        type="text"
+        name="nomeLoja"
+        id="nomeLoja"
+        class="form-control"
+        value="{{cupom.nomeLoja}}"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="telefone">Desconto*</label>
+      <input
+        type="number"
+        name="desconto"
+        id="desconto"
+        class="form-control"
+        value="{{cupom.desconto}}"
+        required
+      />
+    </div>
+    <button class="btn btn-dark mt-2">Editar</button>
+  </form>
+</div>
