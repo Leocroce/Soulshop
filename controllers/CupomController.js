@@ -8,7 +8,7 @@ class CupomController {
         let query = {}
         const { nomeCupom } = req.query
         if(nomeCupom) {
-            query = {nome: { $regex: `${nomeCupom}`, $options: 'i' }}
+            query = {titulo: { $regex: `${nomeCupom}`, $options: 'i' }}
         }
 
         const cupons = await Cupom.find(query).lean()
