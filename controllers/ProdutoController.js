@@ -18,7 +18,8 @@ class ProdutoController {
 
     static async addProduto(req, res) {
         const { name, price, description, quantity } = req.body
-        const produto = Produto({ name, price, description, quantity })
+        const image = req.file?.publicUrl
+        const produto = Produto({ name, price, description, quantity, image })
         await produto.save();
 
         res.redirect('/produtos')
@@ -33,7 +34,9 @@ class ProdutoController {
     static async editProduto(req, res) {
         const { id, name, price, description, quantity } = req.body
 
-        await Produto.findByIdAndUpdate(id, { name, price, description, quantity })
+        const file = req.file    
+
+        await Produto.findByIdAndUpdate(id, { name, price, description, quantity, image: file?.publicUrl })
         res.redirect('/produtos')
     }
 
