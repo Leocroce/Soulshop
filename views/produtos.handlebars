@@ -19,6 +19,7 @@
     </form>
     <table class="table">
         <thead>
+            <th></th>
             <th>Nome</th>
             <th>Preço</th>
             <th>Descrição</th>
@@ -28,6 +29,13 @@
         <tbody>
             {{#each produtos}}
             <tr>
+                <td>
+                    {{#if this.imagem}}
+                    <img src="{{this.image}}" alt="Product image" width="72">
+                    {{else}}
+                    <img src="https://spassodourado.com.br/wp-content/uploads/2015/01/default-placeholder.png" alt="Placeholder" width="72">
+                    {{/if}}
+                </td>
                 <td>{{this.name}}</td>
                 <td>{{this.price}}</td>
                 <td>{{this.description}}</td>
